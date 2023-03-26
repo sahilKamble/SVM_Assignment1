@@ -45,7 +45,7 @@ class SupportVectorModel:
         self.w = np.zeros(X.shape[1])
         self.b = 0
 
-    def _svm_loss(self, X, y, C) -> float:
+    def _svm_loss(self, X, y, C=1) -> float:
         # calculate the hinge loss
         return np.sum(np.maximum(0, 1 - y * (X @ self.w + self.b))) + C * np.sum(self.w ** 2)
 

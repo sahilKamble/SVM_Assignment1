@@ -32,24 +32,24 @@ def main() -> None:
     for k in [5, 10, 20, 50, 100, 200, 500]:
         # reduce the dimensionality of the data
         pca = PCA(n_components=k)
-        X_train = pca.fit_transform(X_train)
-        X_test = pca.transform(X_test)
+        X_train_emb = pca.fit_transform(X_train)
+        X_test_emb = pca.transform(X_test)
 
         # create a model
         svm = MultiClassSVM(num_classes=10)
 
         # fit the model
         svm.fit(
-            X_train, y_train, C=C,
+            X_train_emb, y_train, C=C,
             learning_rate=learning_rate,
             num_iters=num_iters,
         )
 
         # evaluate the model
-        accuracy = svm.accuracy_score(X_test, y_test)
-        precision = svm.precision_score(X_test, y_test)
-        recall = svm.recall_score(X_test, y_test)
-        f1_score = svm.f1_score(X_test, y_test)
+        accuracy = svm.accuracy_score(X_test_emb, y_test)
+        precision = svm.precision_score(X_test_emb, y_test)
+        recall = svm.recall_score(X_test_emb, y_test)
+        f1_score = svm.f1_score(X_test_emb, y_test)
 
         metrics.append((k, accuracy, precision, recall, f1_score))
 
