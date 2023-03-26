@@ -50,16 +50,20 @@ class SupportVectorModel:
         return np.sum(np.maximum(0, 1 - y * (X @ self.w + self.b))) + C * np.sum(self.w ** 2)
 
     def _svm_grad(self, X, y, C) -> np.ndarray:
-        # calculate the gradient of the hinge loss with respect to the parameters
-        margin = y * (X @ self.w + self.b)
-        mask = margin <= 1
-        dLdw = -y[mask] @ X[mask] + 2 * C * self.w
-        dLdb = -np.sum(y[mask])
+            # calculate the gradient of the hinge loss with respect to the parameters
+            margin = y * (X @ self.w + self.b)
+            mask = margin <= 1
+            dLdw = -y[mask] @ X[mask] + 2 * C * self.w
+            dLdb = -np.sum(y[mask])
+            
+            # take the real part of dLdw
+            dLdw = dLdw.real
 
-        return dLdw, dLdb
+            return dLdw, dLdb
+
 
     def fit(
-            self, X, y, 
+            self, X:np.ndarray, y, 
             learning_rate: float,
             num_iters: int,
             C: float = 1.0,

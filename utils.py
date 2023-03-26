@@ -28,11 +28,16 @@ def normalize(X_train: np.ndarray, X_test: np.ndarray) -> Tuple[np.ndarray, np.n
     - X_train_norm: np.ndarray of shape (n_train, n_features), normalized training data
     - X_test_norm: np.ndarray of shape (n_test, n_features), normalized test data
     """
-    mean = np.mean(X_train, axis=0)
-    std = np.std(X_train, axis=0) + 1e-8
 
-    X_train_norm = (X_train - mean) / std
-    X_test_norm = (X_test - mean) / std
+
+    # mean = np.mean(X_train, axis=0)
+    # std = np.std(X_train, axis=0) + 1e-8
+
+    # X_train_norm = (X_train - mean) / std
+    # X_test_norm = (X_test - mean) / std
+
+    X_train_norm = X_train / 255.0 * 2 - 1
+    X_test_norm = X_test / 255.0 * 2 - 1
 
     return X_train_norm, X_test_norm
 
