@@ -17,24 +17,6 @@ def get_data() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     return X_train, X_test, y_train, y_test
 
 def normalize(X_train: np.ndarray, X_test: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
-    """
-    Normalize the data by subtracting the mean and dividing by the standard deviation of X_train.
-
-    Args:
-    - X_train: np.ndarray of shape (n_train, n_features), training data
-    - X_test: np.ndarray of shape (n_test, n_features), test data
-
-    Returns:
-    - X_train_norm: np.ndarray of shape (n_train, n_features), normalized training data
-    - X_test_norm: np.ndarray of shape (n_test, n_features), normalized test data
-    """
-
-
-    # mean = np.mean(X_train, axis=0)
-    # std = np.std(X_train, axis=0) + 1e-8
-
-    # X_train_norm = (X_train - mean) / std
-    # X_test_norm = (X_test - mean) / std
 
     X_train_norm = X_train / 255.0 * 2 - 1
     X_test_norm = X_test / 255.0 * 2 - 1
@@ -58,4 +40,3 @@ def plot_metrics(metrics: list) -> None:
     plt.savefig('metrics.png')
 
     plt.show()
-

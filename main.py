@@ -5,16 +5,9 @@ from typing import Tuple
 
 def get_hyperparameters() -> Tuple[float, int, float]:
     # get the hyperparameters
-    """
-    Get the hyperparameters for the SVM model.
-
-    Returns:
-    - Tuple[float, int, float]: a tuple of learning_rate, num_iters, and C
-    """
-    learning_rate = 0.01
-    num_iters = 1000
-    C = 1.0
-
+    learning_rate = 0.0001
+    num_iters = 100000
+    C = 10
     return learning_rate, num_iters, C
 
 
